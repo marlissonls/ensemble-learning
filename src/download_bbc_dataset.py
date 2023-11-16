@@ -10,6 +10,7 @@ BBC_DIRECTORY = f'{DATASET_DIRECTORY}/bbc/'
 def download_bbc_news() -> str:
     ''' Download BBC News Dataset and returns the BBC News directory. '''
 
+    print('Verifying if BBC Data already exists.')
     if not exists(BBC_DIRECTORY):
 
         if not exists(DATASET_DIRECTORY):
@@ -18,20 +19,19 @@ def download_bbc_news() -> str:
         zipfile_name = 'bbc_dataset.zip'
         zipfile_path = f'{DATASET_DIRECTORY}/{zipfile_name}'
 
-        print('Downloading dataset from BBC...')
+        print('Downloading BBC Data')
         url = 'http://mlg.ucd.ie/files/datasets/bbc-fulltext.zip'
         dowload_file.urlretrieve(url, zipfile_path)
-
+        
         with ZipFile(zipfile_path, 'r') as zip:
-            print('Extracting files from zip...')
             zip.extractall(DATASET_DIRECTORY)
-            print('Data extracted succesfully!')
 
         remove(zipfile_path)
+        print('Download finished.')
 
         return BBC_DIRECTORY
     else:
-        print('Data already downloaded.')
+        print('BBC Data already exists.')
         return BBC_DIRECTORY
 
 if __name__ == '__main__':
