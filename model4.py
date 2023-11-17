@@ -53,7 +53,7 @@ for x in range(1, 100):
     stacking_model = StackingClassifier(estimators = base_models, final_estimator = LogisticRegression(multi_class = 'multinomial', random_state = 30, max_iter = 1000))
 
     # Training
-    accuracy = stacking_model.fit(X_training_vectors.todense(), y_training).score(X_training_vectors.todense(), y_test)
+    accuracy = stacking_model.fit(X_training_vectors, y_training).score(X_test_vectors, y_test)
 
     # Results
     result.append((x, accuracy))

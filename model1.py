@@ -25,14 +25,14 @@ X = news.data
 # Gets the labels (names of folders containing the files)
 y = news.target
 
+# Split into training and test (70/30)
+X_training, X_test, y_training, y_test = train_test_split(X, y, test_size = 0.30, random_state = 75)
+
 # Downlaod nltk stopwords if not downloaded yet
 download_nltk_stopwords()
 
 # Stop words list
 my_stop_words = list(stopwords.words('english'))
-
-# Split into training and test (70/30)
-X_training, X_test, y_training, y_test = train_test_split(X, y, test_size = 0.30, random_state = 75)
 
 # Vectorization
 vectorizer = TfidfVectorizer(norm = None, stop_words = my_stop_words, max_features = 1000, decode_error = 'ignore')
